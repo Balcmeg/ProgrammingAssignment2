@@ -1,4 +1,4 @@
-## Function makeCacheMatrix(x) take an invertible matrix as input x and cache it
+### Function makeCacheMatrix(x) take an invertible matrix as input x and cache it
 makeCacheMatrix <- function(x = matrix()) {
       ## Initialise 'm' as NULL
       m<-NULL
