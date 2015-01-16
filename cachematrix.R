@@ -24,5 +24,14 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## cacheSolve(x, ...) return the inverse of the input matrix x, or if the
 ## inverse already exist in the working directory, read this from cache.
-cacheSolve <- function(x, ...) {
+cacheSolve <- function(x=matrix(), ...) {
+      m<-x$getmatrix()
+      if(!is.null(m)){
+            message("getting cached data")
+            return(m)
+      }
+      matrix<-x$get()
+      m<-solve(matrix, ...)
+      x$setmatrix(m)
+      m
 }
