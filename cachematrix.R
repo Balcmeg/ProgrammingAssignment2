@@ -1,4 +1,5 @@
-### Function 'makeCacheMatrix(x)' take an invertible matrix as input x and cache it
+### Function 'makeCacheMatrix(x)' take an invertible matrix as input 'x' and 
+### cache it as an object with functions to access and write the data
 makeCacheMatrix <- function(x = matrix()) {
       ## Initialise 'm' as NULL
       CachedMatrix<-NULL
@@ -34,7 +35,7 @@ cacheSolve <- function(x=matrix(), ...) {
             return(m)
       }
       matrix<-x$get()
-      ## solve inverse matrix and place in matrix object 'x' by mehtind 'setmatrix'
+      ## solve inverse matrix and place in matrix object 'x' by mehtod 'setmatrix'
       m<-solve(matrix, ...)
       x$setmatrix(m)
       m
