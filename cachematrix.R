@@ -1,4 +1,4 @@
-### Function makeCacheMatrix(x) take an invertible matrix as input x and cache it
+### Function 'makeCacheMatrix(x)' take an invertible matrix as input x and cache it
 makeCacheMatrix <- function(x = matrix()) {
       ## Initialise 'm' as NULL
       CachedMatrix<-NULL
@@ -22,15 +22,19 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## cacheSolve(x, ...) return the inverse of the input matrix x, or if the
+## 'cacheSolve(x, ...)' return the inverse of the input matrix object from 
+## 'makeCacheMatrix' 'x', or if the
 ## inverse already exist in the working directory, read this from cache.
 cacheSolve <- function(x=matrix(), ...) {
+      ## fetch matrix from matrix object 'x' using 'getmatrix' method in 'makeCacheMatrix'
       m<-x$getmatrix()
+      ## if content of matrix 'm' is NULL, fetch cached matrix data
       if(!is.null(m)){
             message("getting cached data")
             return(m)
       }
       matrix<-x$get()
+      ## solve inverse matrix and place in matrix object 'x' by mehtind 'setmatrix'
       m<-solve(matrix, ...)
       x$setmatrix(m)
       m
