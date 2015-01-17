@@ -10,7 +10,7 @@ makeCacheMatrix <- function(x = matrix()) {
             x<<-y
             CachedMatrix<<-NULL
       }
-      ## Create local function 'get' to fetch variable 'x' from cache
+      ## Create local function 'get' to fetch variable 'x' from cache (original matrix)
       get<-function() x
       ## Create local function 'setmatrix' to solve matrix inverse and write to 
       ## cache.
@@ -27,16 +27,18 @@ makeCacheMatrix <- function(x = matrix()) {
 ## 'makeCacheMatrix' 'x', or if the
 ## inverse already exist in the working directory, read this from cache.
 cacheSolve <- function(x=matrix(), ...) {
-      ## fetch matrix from matrix object 'x' using 'getmatrix' method in 'makeCacheMatrix'
+      ## fetch inverse matrix from matrix object 'x' using 'getmatrix' method in 'makeCacheMatrix'
       m<-x$getmatrix()
-      ## if content of matrix 'm' is NULL, fetch cached matrix data
+      ## if content of matrix 'm' (cached inverse) is NULL, return 'm' from function and exit
       if(!is.null(m)){
             message("getting cached data")
             return(m)
       }
+      ## if inverse matrix data doesnt exist, computer inverse
       matrix<-x$get()
       ## solve inverse matrix and place in matrix object 'x' by mehtod 'setmatrix'
       m<-solve(matrix, ...)
       x$setmatrix(m)
+      ##return inverse matrix
       m
 }
